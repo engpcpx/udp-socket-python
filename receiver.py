@@ -1,5 +1,5 @@
 """
-UDP RECEIVER
+RECEIVER
 Created on Sun Mar  1 02:15:46 2020
 
 author: Paulo Cezar da Paixao
@@ -55,11 +55,11 @@ def setPort():
     # try datainput  
     try:
         # UDP port input
-        udpPort = int(input('Entrada da porta UDP [10001 - 11000]: '))  
+        udpPort = int(input('UDP port input [10001 - 11000]: '))  
         
         # input test
         if(udpPort < 10001 or udpPort > 11000):
-            print('entrada fora da faixa.')
+            print('Entry out of range.')
             # return to main menu
             menu(1)
         
@@ -69,7 +69,7 @@ def setPort():
     # error treatement       
     except:
         # show error message
-        print('Entrada inválida.')
+        print('Invalid input')
         # return to main menu
         menu(1)
     
@@ -87,8 +87,8 @@ def receiver(net, port):
         # identification sock return
         sck.bind((net, port))
         # show info
-        print('Escutando no Soquete UDP: {}'.format(sck.getsockname()))
-        print('Aguardando recepção de mensagens...')
+        print('Listening on the UDP socket: {}'.format(sck.getsockname()))
+        print('Waiting to receive messages...')
         
         # loop; listening to network
         while(True):
@@ -116,7 +116,7 @@ def receiver(net, port):
     # open socket failure     
     except:
         # show error message
-        print('Erro na abertura de Conexão do Receptor.')
+        print('Error opening Receiver Connection.')
         print('Provavelmente a porta UDP já está em uso.')
         # return to menu
         menu(1)
@@ -126,7 +126,7 @@ def receiver(net, port):
 def rcvState1():
     
     # show current state
-    print('[Executando Recepção...]')
+    # print('[Running State 1..]')
        
     # set udp port
     udpPort = setPort()
@@ -140,8 +140,8 @@ def rcvState1():
 def rcvState2():
     
     # show current state
-    print('[Executando Estado 2...]')
-   
+    # print('[Running state 2...]')
+    exit()
      
 #------------------------------------------------------------------------------
 # main menu
@@ -152,35 +152,24 @@ def menu(option):
     -------------------------------------------------                 
 	RECEIVER
     -------------------------------------------------
-    [1] - Ativa Receptor de Mensagens
-    [2] - Enter para Sair    
+    [1] - Runs Message Receiver
+    [2] - Exit    
     -------------------------------------------------''')
-    
-    '''
-    # show current address
-    print('    IP atual: {}'.format(ipAddress))
-    print('    Porta atual: {}'.format(udpPort))
-    print('    Qtd. Mensagens: {}'.format(messages))
-    print('    =================================================')
-    '''
-    
+        
     # select menu option
    
-    option= int(input('    Escolha a opção => '))
+    option= int(input('    Choose the option => '))
     print()
     
     # select menu option
     if option == 1:
         rcvState1()
-        
-    elif option == 2:
-        pass
          
-    elif option == 3:
-        exit()
-        
+    elif option == 0:
+        sndState2()
+ 
     else:
-        print('Opção inválida.')
+        print('Error: Invalid option.')
         menu(0)
     
         
